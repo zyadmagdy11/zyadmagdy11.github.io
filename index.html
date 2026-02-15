@@ -5,7 +5,7 @@
     <title>Zyad Magdy · Computer & Systems Engineer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Bootstrap 5 -->
+    <!-- Bootstrap 5 (minimal layout) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- FontAwesome 6 -->
@@ -14,257 +14,379 @@
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
-    <!-- Custom Styles (exactly like friend's) -->
+    <!-- ========== NEW STYLE · ENTIRELY FRESH ========== -->
     <style>
-        body {
-            background-color: #0a0a0a;
-            color: #e0e0e0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            padding-top: 70px;
+        /* ----- GLOBAL VARIABLES & RESET ----- */
+        :root {
+            --primary: #6f42c1;        /* bold purple */
+            --primary-dark: #5a32a3;
+            --secondary: #20c997;      /* teal accent */
+            --light-bg: #f9fafc;
+            --card-bg: #ffffff;
+            --text-dark: #1e293b;
+            --text-muted: #475569;
+            --border-light: #e2e8f0;
+            --shadow-sm: 0 10px 25px -5px rgba(0,0,0,0.05), 0 8px 10px -6px rgba(0,0,0,0.02);
+            --shadow-hover: 0 20px 30px -10px rgba(111, 66, 193, 0.15);
+            --transition: all 0.2s ease;
         }
 
-        /* Navbar */
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-dark);
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            padding-top: 70px;
+            line-height: 1.6;
+        }
+
+        /* ----- TYPOGRAPHY & LINKS ----- */
+        .text-primary { color: var(--primary) !important; }
+        .bg-primary { background-color: var(--primary) !important; }
+        .text-info { color: var(--secondary) !important; }  /* override info with teal */
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        a:hover {
+            color: var(--primary-dark);
+        }
+
+        /* ----- NAVBAR (light, clean) ----- */
         .navbar {
-            background-color: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid #222;
+            background-color: rgba(255,255,255,0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
         .navbar-brand {
-            color: #fff !important;
-            font-weight: 600;
+            color: var(--text-dark) !important;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        .navbar-brand i {
+            color: var(--primary) !important;
         }
         .nav-link {
-            color: #ccc !important;
-            margin: 0 5px;
-            transition: color 0.2s;
+            color: var(--text-muted) !important;
+            font-weight: 500;
+            margin: 0 0.5rem;
+            position: relative;
         }
         .nav-link:hover {
-            color: #0d6efd !important;
+            color: var(--primary) !important;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            background: var(--primary);
+            transition: 0.2s;
+            transform: translateX(-50%);
+        }
+        .nav-link:hover::after {
+            width: 70%;
         }
 
-        /* Hero Section */
+        /* ----- HERO (light gradient, fresh) ----- */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%);
+            background: linear-gradient(135deg, #ffffff 0%, #f1f4f9 100%);
             padding: 120px 0 80px;
         }
+        .hero h1 {
+            color: var(--text-dark);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+        .hero .lead {
+            color: var(--text-muted);
+        }
         .social-icons a {
-            color: #fff;
-            font-size: 1.8rem;
-            margin: 0 15px;
-            transition: all 0.2s;
+            color: var(--text-muted);
+            font-size: 2rem;
+            margin: 0 1rem;
+            transition: var(--transition);
             display: inline-block;
         }
         .social-icons a:hover {
-            color: #0d6efd;
-            transform: translateY(-5px);
+            color: var(--primary);
+            transform: translateY(-6px);
         }
 
-        /* Section titles */
+        /* ----- SECTION TITLES (with modern double underline) ----- */
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
             margin-bottom: 3rem;
-            position: relative;
             display: inline-block;
+            color: var(--text-dark);
+            position: relative;
         }
         .section-title::after {
             content: '';
             position: absolute;
             left: 0;
-            bottom: -10px;
-            width: 70px;
+            bottom: -12px;
+            width: 80px;
             height: 4px;
-            background: #0d6efd;
-            border-radius: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 4px;
         }
         .text-center .section-title::after {
             left: 50%;
             transform: translateX(-50%);
+            width: 100px;
         }
 
-        /* About */
+        /* ----- ABOUT CARD (clean, border-left accent) ----- */
         .quick-facts {
-            background: #1e1e1e;
-            border-radius: 20px;
+            background: var(--card-bg);
+            border-radius: 24px;
             padding: 2rem;
-            border-left: 5px solid #0d6efd;
+            border-left: 6px solid var(--primary);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+            border-left-width: 6px;
         }
         .quick-facts ul i {
             width: 30px;
-            color: #0d6efd;
+            color: var(--secondary);
         }
         .personal-tag {
+            background: var(--card-bg);
+            padding: 1.2rem 1.8rem;
+            border-radius: 60px;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
             font-size: 1.2rem;
-            padding: 1rem;
-            background: #111;
-            border-radius: 50px;
+            color: var(--text-dark);
+            display: inline-block;
         }
 
-        /* Skills */
+        /* ----- SKILLS (minimal cards, chip badges) ----- */
         .skill-category {
-            background: #1a1a1a;
-            border-radius: 20px;
-            padding: 1.8rem;
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 2rem;
             height: 100%;
-            border: 1px solid #2a2a2a;
-            transition: transform 0.2s;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
         }
         .skill-category:hover {
-            transform: translateY(-5px);
-            border-color: #0d6efd;
+            transform: translateY(-6px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
+        }
+        .skill-category h4 {
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px dashed var(--border-light);
+            padding-bottom: 0.75rem;
         }
         .skill-badge {
             display: inline-block;
-            background: #2a2a2a;
-            color: #e0e0e0;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
+            background: #f1f4f9;
+            color: var(--text-dark);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
             font-size: 0.9rem;
             font-weight: 500;
             margin: 0.3rem;
-            border: 1px solid #3a3a3a;
-            transition: 0.2s;
+            border: 1px solid transparent;
+            transition: var(--transition);
         }
         .skill-badge:hover {
-            background: #0d6efd;
-            border-color: #0d6efd;
+            background: var(--primary);
             color: white;
+            border-color: var(--primary);
+            transform: scale(1.02);
         }
 
-        /* Education & Experience cards */
+        /* ----- EDUCATION & TRAINING CARDS (white, subtle) ----- */
         .edu-card, .exp-card {
-            background: #1a1a1a;
-            border-radius: 20px;
+            background: var(--card-bg);
+            border-radius: 24px;
             padding: 2rem;
-            border: 1px solid #2a2a2a;
-            position: relative;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
             height: 100%;
-            transition: 0.2s;
+            transition: var(--transition);
+            position: relative;
         }
         .edu-card:hover, .exp-card:hover {
-            border-color: #0d6efd;
-            box-shadow: 0 10px 20px -10px rgba(13, 110, 253, 0.3);
+            border-color: var(--primary);
+            box-shadow: var(--shadow-hover);
         }
         .date-badge {
-            background: #0d6efd20;
-            color: #0d6efd;
-            padding: 0.3rem 1rem;
-            border-radius: 50px;
+            background: #e9e1f9;  /* light purple */
+            color: var(--primary-dark);
+            padding: 0.4rem 1.4rem;
+            border-radius: 40px;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 600;
+            display: inline-block;
+            border: none;
         }
         .exp-card ul {
             padding-left: 1.2rem;
-            color: #b0b0b0;
+            color: var(--text-muted);
         }
         .exp-card li {
-            margin-bottom: 0.7rem;
+            margin-bottom: 0.6rem;
         }
 
-        /* Projects */
+        /* ----- PROJECT CARDS (with border, icon big) ----- */
         .project-card {
-            background: #1a1a1a;
-            border-radius: 20px;
+            background: var(--card-bg);
+            border-radius: 28px;
             padding: 2rem;
-            border: 1px solid #2a2a2a;
-            transition: all 0.2s;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            height: 100%;
         }
         .project-card:hover {
-            border-color: #0d6efd;
-            transform: translateY(-5px);
-            box-shadow: 0 20px 30px -15px #0d6efd40;
+            border-color: var(--primary);
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-hover);
         }
         .project-icon {
-            font-size: 2.5rem;
-            color: #0d6efd;
-            margin-bottom: 1rem;
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
         }
         .project-title {
-            font-size: 1.5rem;
-            font-weight: 600;
+            font-size: 1.7rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-            color: #fff;
+            color: var(--text-dark);
         }
         .project-case {
-            background: #111;
-            padding: 1rem;
-            border-radius: 15px;
-            margin: 1rem 0;
+            background: #f8fafc;
+            padding: 1.2rem;
+            border-radius: 20px;
+            margin: 1.5rem 0;
             font-size: 0.95rem;
-            border-left: 4px solid #0d6efd;
+            border-left: 6px solid var(--secondary);
+            color: var(--text-muted);
         }
         .tech-stack {
-            color: #0d6efd;
-            font-weight: 500;
-            margin: 0.8rem 0;
-            font-size: 0.9rem;
-        }
-        .btn-project {
-            background: transparent;
-            border: 2px solid #0d6efd;
-            color: #0d6efd;
-            border-radius: 50px;
-            padding: 0.6rem;
+            color: var(--primary);
             font-weight: 600;
-            transition: 0.2s;
-        }
-        .btn-project:hover {
-            background: #0d6efd;
-            color: white;
+            margin: 1rem 0 0.8rem;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
         }
 
-        /* Footer */
-        footer {
-            background: #0f0f0f;
-            border-top: 1px solid #222;
-            color: #888;
-        }
-
-        /* Helper classes */
-        .text-primary { color: #0d6efd !important; }
-        .bg-primary { background-color: #0d6efd !important; }
+        /* ----- BUTTONS: squared, modern, no pill ----- */
         .btn-primary {
-            background: #0d6efd;
+            background: var(--primary);
             border: none;
-            border-radius: 50px;
+            border-radius: 14px;
             padding: 0.7rem 2rem;
             font-weight: 600;
+            color: white;
+            transition: var(--transition);
+            box-shadow: 0 8px 18px -8px rgba(111, 66, 193, 0.4);
         }
-        .btn-primary:hover { background: #0b5ed7; }
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 22px -10px var(--primary);
+        }
+
         .btn-outline-primary {
-            border: 2px solid #0d6efd;
-            color: #0d6efd;
-            border-radius: 50px;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 14px;
             padding: 0.7rem 2rem;
             font-weight: 600;
+            background: transparent;
+            transition: var(--transition);
         }
         .btn-outline-primary:hover {
-            background: #0d6efd;
+            background: var(--primary);
             color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
+
         .btn-outline-light {
-            border: 2px solid #fff;
-            color: #fff;
-            border-radius: 50px;
+            border: 2px solid var(--text-dark);
+            color: var(--text-dark);
+            border-radius: 14px;
             padding: 0.7rem 2rem;
             font-weight: 600;
         }
         .btn-outline-light:hover {
-            background: #fff;
-            color: #000;
+            background: var(--text-dark);
+            color: white;
+            border-color: var(--text-dark);
+        }
+
+        .btn-project {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 14px;
+            padding: 0.7rem;
+            font-weight: 600;
+            transition: var(--transition);
+            width: 100%;
+        }
+        .btn-project:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* ----- FOOTER (light, simple) ----- */
+        footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-muted);
+            margin-top: 2rem;
+        }
+        footer a {
+            color: var(--text-muted);
+            font-size: 1.4rem;
+            transition: var(--transition);
+        }
+        footer a:hover {
+            color: var(--primary);
+        }
+
+        /* ----- HELPER: remove old blue residue ----- */
+        .text-info a {
+            color: var(--secondary) !important;
+        }
+        .text-info a:hover {
+            color: var(--primary) !important;
+        }
+        .personal-tag i {
+            color: var(--primary) !important;
+        }
+        .date-badge i {
+            color: var(--primary);
+        }
+        .project-card a {
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-<!-- ========== NAVBAR ========== -->
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<!-- ========== NAVBAR (unchanged structure) ========== -->
+<nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
         <a class="navbar-brand fw-bold fs-3" href="#">
-            <i class="fas fa-microchip me-2" style="color: #0d6efd;"></i>Zyad Magdy
+            <i class="fas fa-microchip me-2" style="color: var(--primary);"></i>Zyad Magdy
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
             <span class="navbar-toggler-icon"></span>
@@ -321,7 +443,7 @@
                     </p>
                     
                     <div class="personal-tag mt-4">
-                        <i class="fas fa-quote-left" style="color: #0d6efd;"></i> 
+                        <i class="fas fa-quote-left"></i> 
                         <span class="fst-italic fw-medium ms-2">
                             "Building reliable systems from silicon to software."
                         </span>
@@ -350,80 +472,56 @@
         <div class="row">
             <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in">
                 <div class="skill-category">
-                    <h4><i class="fas fa-code me-2"></i>Programming & Tools</h4>
+                    <h4><i class="fas fa-code me-2" style="color:var(--primary);"></i>Programming & Tools</h4>
                     <div>
-                        <span class="skill-badge">C</span>
-                        <span class="skill-badge">C++</span>
-                        <span class="skill-badge">Java</span>
-                        <span class="skill-badge">Python</span>
-                        <span class="skill-badge">SQL</span>
-                        <span class="skill-badge">Qt</span>
-                        <span class="skill-badge">Git/GitHub</span>
-                        <span class="skill-badge">Linux</span>
-                        <span class="skill-badge">Kali Linux</span>
+                        <span class="skill-badge">C</span><span class="skill-badge">C++</span><span class="skill-badge">Java</span>
+                        <span class="skill-badge">Python</span><span class="skill-badge">SQL</span><span class="skill-badge">Qt</span>
+                        <span class="skill-badge">Git/GitHub</span><span class="skill-badge">Linux</span><span class="skill-badge">Kali Linux</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
                 <div class="skill-category">
-                    <h4><i class="fas fa-robot me-2"></i>ML & Data Analysis</h4>
+                    <h4><i class="fas fa-robot me-2" style="color:var(--primary);"></i>ML & Data Analysis</h4>
                     <div>
-                        <span class="skill-badge">Scikit-Learn</span>
-                        <span class="skill-badge">Keras</span>
-                        <span class="skill-badge">CNN</span>
-                        <span class="skill-badge">NumPy</span>
-                        <span class="skill-badge">Matplotlib</span>
-                        <span class="skill-badge">Jupyter</span>
+                        <span class="skill-badge">Scikit-Learn</span><span class="skill-badge">Keras</span><span class="skill-badge">CNN</span>
+                        <span class="skill-badge">NumPy</span><span class="skill-badge">Matplotlib</span><span class="skill-badge">Jupyter</span>
                         <span class="skill-badge">GridSearchCV</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="200">
                 <div class="skill-category">
-                    <h4><i class="fas fa-microchip me-2"></i>Hardware & Digital Design</h4>
+                    <h4><i class="fas fa-microchip me-2" style="color:var(--primary);"></i>Hardware & Digital Design</h4>
                     <div>
-                        <span class="skill-badge">VHDL</span>
-                        <span class="skill-badge">Verilog</span>
-                        <span class="skill-badge">SystemVerilog</span>
-                        <span class="skill-badge">FPGA</span>
-                        <span class="skill-badge">FSM</span>
-                        <span class="skill-badge">Static Timing</span>
-                        <span class="skill-badge">PCI</span>
+                        <span class="skill-badge">VHDL</span><span class="skill-badge">Verilog</span><span class="skill-badge">SystemVerilog</span>
+                        <span class="skill-badge">FPGA</span><span class="skill-badge">FSM</span><span class="skill-badge">Static Timing</span><span class="skill-badge">PCI</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="300">
                 <div class="skill-category">
-                    <h4><i class="fas fa-embedded me-2"></i>Embedded Systems</h4>
+                    <h4><i class="fas fa-embedded me-2" style="color:var(--primary);"></i>Embedded Systems</h4>
                     <div>
-                        <span class="skill-badge">ARM Cortex-M</span>
-                        <span class="skill-badge">UART</span>
-                        <span class="skill-badge">CAN</span>
-                        <span class="skill-badge">Bootloaders</span>
-                        <span class="skill-badge">RTOS</span>
-                        <span class="skill-badge">Interrupts</span>
+                        <span class="skill-badge">ARM Cortex-M</span><span class="skill-badge">UART</span><span class="skill-badge">CAN</span>
+                        <span class="skill-badge">Bootloaders</span><span class="skill-badge">RTOS</span><span class="skill-badge">Interrupts</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="400">
                 <div class="skill-category">
-                    <h4><i class="fas fa-shield me-2"></i>Cybersecurity & Safety</h4>
+                    <h4><i class="fas fa-shield me-2" style="color:var(--primary);"></i>Cybersecurity & Safety</h4>
                     <div>
-                        <span class="skill-badge">ISO 26262</span>
-                        <span class="skill-badge">AUTOSAR</span>
-                        <span class="skill-badge">Functional Safety</span>
+                        <span class="skill-badge">ISO 26262</span><span class="skill-badge">AUTOSAR</span><span class="skill-badge">Functional Safety</span>
                     </div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="500">
                 <div class="skill-category">
-                    <h4><i class="fas fa-users me-2"></i>Interpersonal</h4>
+                    <h4><i class="fas fa-users me-2" style="color:var(--primary);"></i>Interpersonal</h4>
                     <div>
-                        <span class="skill-badge">Problem Solving</span>
-                        <span class="skill-badge">Teamwork</span>
-                        <span class="skill-badge">Communication</span>
-                        <span class="skill-badge">Self-learning</span>
-                        <span class="skill-badge">Organization</span>
+                        <span class="skill-badge">Problem Solving</span><span class="skill-badge">Teamwork</span><span class="skill-badge">Communication</span>
+                        <span class="skill-badge">Self-learning</span><span class="skill-badge">Organization</span>
                     </div>
                 </div>
             </div>
@@ -448,16 +546,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8" data-aos="flip-left">
                 <div class="edu-card">
-                    <i class="fas fa-graduation-cap fa-2x mb-3" style="color: #0d6efd;"></i>
+                    <i class="fas fa-graduation-cap fa-2x mb-3" style="color:var(--primary);"></i>
                     <h3 class="h4">B.Sc. in Computer & Systems Engineering</h3>
                     <p class="text-primary mb-1">Ain Shams University · Expected June 2026</p>
                     <p>
                         Focused on embedded systems, digital design, machine learning, and system architecture.<br>
                         GPA: <strong>3.31 / 4.0</strong> · Rank: <strong>60th</strong>
                     </p>
-                    <span class="date-badge">
-                        <i class="far fa-calendar-alt me-1"></i> 2021 – 2026
-                    </span>
+                    <span class="date-badge"><i class="far fa-calendar-alt me-1"></i> 2021 – 2026</span>
                 </div>
             </div>
         </div>
@@ -473,7 +569,7 @@
             <div class="col-lg-4" data-aos="fade-right">
                 <div class="exp-card">
                     <div class="d-flex align-items-center mb-2">
-                        <i class="fas fa-laptop fa-2x me-3" style="color: #0d6efd;"></i>
+                        <i class="fas fa-laptop fa-2x me-3" style="color:var(--primary);"></i>
                         <h3 class="h4 mb-0">Data Scientist (DEPI)</h3>
                     </div>
                     <p class="text-info mb-1">Digital Egypt Pioneers (IBM) · Dec 2025 – Jul 2026</p>
@@ -489,7 +585,7 @@
             <div class="col-lg-4" data-aos="fade-up">
                 <div class="exp-card">
                     <div class="d-flex align-items-center mb-2">
-                        <i class="fas fa-microchip fa-2x me-3" style="color: #0d6efd;"></i>
+                        <i class="fas fa-microchip fa-2x me-3" style="color:var(--primary);"></i>
                         <h3 class="h4 mb-0">Embedded Systems</h3>
                     </div>
                     <p class="text-info mb-1">Siemens · Jul 2025 – Sep 2025</p>
@@ -505,7 +601,7 @@
             <div class="col-lg-4" data-aos="fade-left">
                 <div class="exp-card">
                     <div class="d-flex align-items-center mb-2">
-                        <i class="fas fa-circuit-board fa-2x me-3" style="color: #0d6efd;"></i>
+                        <i class="fas fa-circuit-board fa-2x me-3" style="color:var(--primary);"></i>
                         <h3 class="h4 mb-0">Digital Design (FPGA)</h3>
                     </div>
                     <p class="text-info mb-1">NTI · Aug 2025 – Sep 2025</p>
@@ -520,7 +616,7 @@
             <div class="col-lg-4" data-aos="fade-right" data-aos-delay="100">
                 <div class="exp-card">
                     <div class="d-flex align-items-center mb-2">
-                        <i class="fas fa-shield-alt fa-2x me-3" style="color: #0d6efd;"></i>
+                        <i class="fas fa-shield-alt fa-2x me-3" style="color:var(--primary);"></i>
                         <h3 class="h4 mb-0">Cyber Security</h3>
                     </div>
                     <p class="text-info mb-1">ITI Port Said · Aug 2024 – Sep 2024</p>
@@ -535,7 +631,7 @@
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
                 <div class="exp-card">
                     <div class="d-flex align-items-center mb-2">
-                        <i class="fas fa-brain fa-2x me-3" style="color: #0d6efd;"></i>
+                        <i class="fas fa-brain fa-2x me-3" style="color:var(--primary);"></i>
                         <h3 class="h4 mb-0">ML Specialization</h3>
                     </div>
                     <p class="text-info mb-1">DeepLearning.AI · Aug 2023 – Sep 2023</p>
@@ -569,12 +665,9 @@
                         <strong>📈 Outcome:</strong> Accurate coordinate logging while in motion
                     </div>
                     <p class="tech-stack">C · ARM · Embedded</p>
-                    <a href="https://github.com/zyadmagdy11/ARM_M4_GPS" class="btn btn-project w-100 mt-2" target="_blank" rel="noopener">
-                        <i class="fab fa-github me-1"></i> GitHub
-                    </a>
+                    <a href="https://github.com/zyadmagdy11/ARM_M4_GPS" class="btn btn-project w-100 mt-2" target="_blank" rel="noopener"><i class="fab fa-github me-1"></i> GitHub</a>
                 </div>
             </div>
-            
             <!-- EduFLEXA -->
             <div class="col-md-6 col-lg-6" data-aos="zoom-in" data-aos-delay="100">
                 <div class="project-card h-100">
@@ -586,12 +679,9 @@
                         <strong>📈 Outcome:</strong> User-friendly educational tool
                     </div>
                     <p class="tech-stack">Java · JavaFX · OOP</p>
-                    <a href="https://github.com/zyadmagdy11/EDUFLEXA_java_edu_system" class="btn btn-project w-100 mt-2" target="_blank" rel="noopener">
-                        <i class="fab fa-github me-1"></i> GitHub
-                    </a>
+                    <a href="https://github.com/zyadmagdy11/EDUFLEXA_java_edu_system" class="btn btn-project w-100 mt-2" target="_blank" rel="noopener"><i class="fab fa-github me-1"></i> GitHub</a>
                 </div>
             </div>
-            
             <!-- MIPS Processor Verilog -->
             <div class="col-md-6 col-lg-6" data-aos="zoom-in" data-aos-delay="200">
                 <div class="project-card h-100">
@@ -603,12 +693,9 @@
                         <strong>📈 Outcome:</strong> Functional processor simulation
                     </div>
                     <p class="tech-stack">Verilog · FPGA · Computer Architecture</p>
-                    <a href="https://github.com/zyadmagdy11/MIPS-Assembly-Project" class="btn btn-project w-100 mt-2" target="_blank" rel="noopener">
-                        <i class="fab fa-github me-1"></i> GitHub
-                    </a>
+                    <a href="https://github.com/zyadmagdy11/MIPS-Assembly-Project" class="btn btn-project w-100 mt-2" target="_blank" rel="noopener"><i class="fab fa-github me-1"></i> GitHub</a>
                 </div>
             </div>
-            
             <!-- Algorithm Design Project -->
             <div class="col-md-6 col-lg-6" data-aos="zoom-in" data-aos-delay="300">
                 <div class="project-card h-100">
@@ -620,9 +707,7 @@
                         <strong>📈 Outcome:</strong> Full technical report & interactive demos
                     </div>
                     <p class="tech-stack">C++ · Java · Algorithms</p>
-                    <a href="https://github.com/zyadmagdy11/Algorithm-Project" class="btn btn-project w-100 mt-2" target="_blank" rel="noopener">
-                        <i class="fab fa-github me-1"></i> GitHub
-                    </a>
+                    <a href="https://github.com/zyadmagdy11/Algorithm-Project" class="btn btn-project w-100 mt-2" target="_blank" rel="noopener"><i class="fab fa-github me-1"></i> GitHub</a>
                 </div>
             </div>
         </div>
@@ -641,9 +726,9 @@
         <p class="mb-1">© 2026 Zyad Magdy — Computer & Systems Engineer</p>
         <p class="small text-secondary">Built with <i class="fas fa-heart text-danger"></i> and a lot of C</p>
         <div class="mt-3">
-            <a href="https://github.com/zyadmagdy11" class="text-white me-3"><i class="fab fa-github"></i></a>
-            <a href="http://www.linkedin.com/in/zyad-magdy-aa3a54302" class="text-white me-3"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:zyadmagdy32@gmail.com" class="text-white"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/zyadmagdy11" class="me-3"><i class="fab fa-github"></i></a>
+            <a href="http://www.linkedin.com/in/zyad-magdy-aa3a54302" class="me-3"><i class="fab fa-linkedin"></i></a>
+            <a href="mailto:zyadmagdy32@gmail.com"><i class="fas fa-envelope"></i></a>
         </div>
     </div>
 </footer>
@@ -654,12 +739,7 @@
 <!-- AOS -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({
-        duration: 900,
-        once: true,
-        offset: 50
-    });
+    AOS.init({ duration: 900, once: true, offset: 50 });
 </script>
-
 </body>
 </html>
