@@ -2,303 +2,262 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Zyad Magdy | Systems & Hardware Architect</title>
+    <title>Zyad Magdy | Computer & Systems Engineer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --accent: #00f2ff;
-            --accent-dim: rgba(0, 242, 255, 0.15);
-            --bg-dark: #050505;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --border: rgba(255, 255, 255, 0.08);
+            --accent-soft: rgba(0, 242, 255, 0.1);
+            --bg-dark: #020202;
+            --surface: #0a0a0a;
+            --border: rgba(255, 255, 255, 0.1);
         }
 
         body {
             background-color: var(--bg-dark);
-            color: #fafafa;
+            color: #e0e0e0;
             font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
         }
 
-        h1, h2, h3, .nav-link { font-family: 'Space Grotesk', sans-serif; }
+        /* --- TYPOGRAPHY --- */
+        .name-header { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: 8px; font-weight: 700; }
+        .mono { font-family: 'JetBrains Mono', monospace; }
 
-        .navbar {
-            background: rgba(5, 5, 5, 0.8) !important;
-            backdrop-filter: blur(15px);
+        /* --- HERO --- */
+        .hero-v3 {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            background-image: radial-gradient(circle at 50% 50%, #111 0%, transparent 100%);
+        }
+
+        /* --- SKILLS BOARD (GRID) --- */
+        .skills-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .skill-cell {
+            background: var(--bg-dark);
+            padding: 40px;
+            transition: 0.4s;
+        }
+
+        .skill-cell:hover {
+            background: #050505;
+        }
+
+        .skill-tag {
+            font-size: 0.75rem;
+            color: var(--accent);
+            border: 1px solid var(--accent-soft);
+            padding: 4px 10px;
+            margin: 4px;
+            display: inline-block;
+            background: var(--accent-soft);
+        }
+
+        /* --- PROJECT BLADES --- */
+        .project-blade {
+            display: flex;
+            align-items: stretch;
+            margin-bottom: 40px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.5s;
+        }
+
+        .project-blade:hover {
+            border-color: var(--accent);
+        }
+
+        .blade-number {
+            background: var(--accent);
+            color: #000;
+            writing-mode: vertical-lr;
+            transform: rotate(180deg);
+            padding: 20px 10px;
+            font-family: 'Syncopate';
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        .blade-content {
+            padding: 40px;
+            background: var(--surface);
+            flex-grow: 1;
+        }
+
+        .blade-meta {
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+            padding-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .meta-box h6 { font-size: 0.65rem; text-transform: uppercase; color: var(--accent); margin-bottom: 5px; }
+        .meta-box p { font-size: 0.85rem; margin-bottom: 0; color: #aaa; }
+
+        /* --- NAV --- */
+        .custom-nav {
+            padding: 20px 0;
             border-bottom: 1px solid var(--border);
         }
 
-        /* --- HERO --- */
-        .hero-split {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            padding-top: 80px;
-            background: radial-gradient(circle at 90% 10%, var(--accent-dim) 0%, transparent 40%);
-        }
-
-        .glitch-title {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 700;
-            line-height: 1;
-            letter-spacing: -2px;
-        }
-
-        /* --- BENTO SYSTEM --- */
-        .bento-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-gap: 20px;
-        }
-
-        .bento-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 30px;
-            transition: all 0.3s ease;
-        }
-
-        .bento-item:hover {
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        .skill-pill {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            padding: 5px 12px;
-            border-radius: 10px;
+        .btn-outline-cyber {
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            border-radius: 0;
+            padding: 10px 30px;
+            text-transform: uppercase;
             font-size: 0.8rem;
-            display: inline-block;
-            margin: 3px;
+            letter-spacing: 2px;
+            transition: 0.3s;
         }
 
-        /* --- PROJECT CARDS --- */
-        .project-card-new {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 24px;
-            padding: 25px;
-            height: 100%;
-        }
-
-        .project-meta {
-            background: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            padding: 15px;
-            font-size: 0.9rem;
-            border-left: 3px solid var(--accent);
-        }
-
-        /* --- TIMELINE --- */
-        .timeline-item {
-            border-left: 1px solid var(--accent);
-            padding-left: 20px;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -5px;
-            top: 0;
-            width: 9px;
-            height: 9px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-
-        .btn-cyber {
+        .btn-outline-cyber:hover {
             background: var(--accent);
             color: #000;
-            font-weight: 700;
-            border-radius: 50px;
-            padding: 12px 30px;
-            text-decoration: none;
-            display: inline-block;
+            box-shadow: 0 0 20px var(--accent-soft);
         }
 
-        @media (max-width: 992px) {
-            .bento-grid { grid-template-columns: repeat(1, 1fr); }
-            .hero-split { text-align: center; }
+        @media (max-width: 768px) {
+            .blade-meta { grid-template-columns: 1fr; }
+            .name-header { font-size: 2rem; letter-spacing: 4px; }
         }
     </style>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-        <a class="navbar-brand fw-bold" href="#">ZYAD<span style="color:var(--accent)">.M</span></a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link" href="#about">Bio</a></li>
-                <li class="nav-item"><a class="nav-link" href="#skills">Tech Stack</a></li>
-                <li class="nav-item"><a class="nav-link" href="#projects">Hardware/Software</a></li>
-                <li class="nav-item"><a class="nav-link" href="#training">Training</a></li>
-            </ul>
-        </div>
+<header class="custom-nav fixed-top bg-black">
+    <div class="container d-flex justify-content-between align-items-center">
+        <div class="name-header fs-5">ZYAD MAGDY</div>
+        <div class="mono d-none d-md-block fs-6" style="color: var(--accent);">[ STATUS: ACTIVE_ENG ]</div>
     </div>
-</nav>
+</header>
 
-<section class="hero-split">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8" data-aos="fade-right">
-                <h1 class="glitch-title mb-4">ENGINEERING<br>RELIABLE <span style="color: var(--accent)">SYSTEMS</span></h1>
-                <p class="lead text-secondary mb-5" style="max-width: 600px;">
-                    Zyad Magdy Roushdy — Computer & Systems Engineer. 
-                    I bridge the gap between silicon and software to build efficient, scalable solutions across Embedded Systems, Digital Design, and ML.
-                </p>
-                <div class="d-flex flex-wrap gap-3">
-                    <a href="https://github.com/zyadmagdy11?tab=repositories" class="btn btn-cyber">View Repository</a>
-                    <a href="mailto:zyadmagdy32@gmail.com" class="btn btn-outline-light rounded-pill px-4 pt-2">Email Me</a>
+<section class="hero-v3">
+    <div class="container text-center">
+        <div data-aos="zoom-out">
+            <h1 class="name-header display-2 mb-0">ZYAD MAGDY</h1>
+            <h2 class="name-header fs-4 mb-4" style="color: var(--accent); opacity: 0.8;">ROUSHDY</h2>
+        </div>
+        <p class="mono mb-5" style="letter-spacing: 3px;">ENGINEERING RELIABLE SYSTEMS</p>
+        <div class="row justify-content-center g-4 mt-2">
+            <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="100">
+                <div class="p-3 border border-secondary border-opacity-25">
+                    <span class="mono d-block text-secondary small">GPA</span>
+                    <span class="fs-4">3.31</span>
                 </div>
             </div>
-            <div class="col-lg-4 text-center mt-5 mt-lg-0" data-aos="zoom-in">
-                <div class="bento-item">
-                    <div class="display-5 fw-bold text-primary">3.31</div>
-                    <div class="small text-secondary">Cumulative GPA</div>
-                    <hr>
-                    <div class="display-6 fw-bold">60<sup>th</sup></div>
-                    <div class="small text-secondary">Class Rank</div>
+            <div class="col-6 col-md-2" data-aos="fade-up" data-aos-delay="200">
+                <div class="p-3 border border-secondary border-opacity-25">
+                    <span class="mono d-block text-secondary small">RANK</span>
+                    <span class="fs-4">60th</span>
                 </div>
+            </div>
+        </div>
+        <div class="mt-5" data-aos="fade-up" data-aos-delay="300">
+            <a href="#projects" class="btn btn-outline-cyber">System Log</a>
+        </div>
+    </div>
+</section>
+
+<section id="skills" class="py-0 border-bottom border-secondary border-opacity-25">
+    <div class="skills-board">
+        <div class="skill-cell" data-aos="fade-up">
+            <h4 class="name-header fs-6 mb-4">Hardware Architecture</h4>
+            <div class="skill-group">
+                <span class="skill-tag">VHDL</span><span class="skill-tag">Verilog</span><span class="skill-tag">SystemVerilog</span>
+                <span class="skill-tag">FPGA</span><span class="skill-tag">FSM Design</span><span class="skill-tag">Static Timing</span>
+                <span class="skill-tag">PCI Architecture</span>
+            </div>
+        </div>
+        <div class="skill-cell" data-aos="fade-up" data-aos-delay="100">
+            <h4 class="name-header fs-6 mb-4">Embedded Control</h4>
+            <div class="skill-group">
+                <span class="skill-tag">ARM Cortex-M</span><span class="skill-tag">UART</span><span class="skill-tag">CAN Protocol</span>
+                <span class="skill-tag">Custom Bootloaders</span><span class="skill-tag">RTOS</span><span class="skill-tag">Interrupt Systems</span>
+            </div>
+        </div>
+        <div class="skill-cell" data-aos="fade-up" data-aos-delay="200">
+            <h4 class="name-header fs-6 mb-4">Core Software</h4>
+            <div class="skill-group">
+                <span class="skill-tag">C/C++</span><span class="skill-tag">Python</span><span class="skill-tag">Java</span>
+                <span class="skill-tag">SQL</span><span class="skill-tag">Qt Framework</span><span class="skill-tag">Linux / Kali</span>
+            </div>
+        </div>
+        <div class="skill-cell" data-aos="fade-up" data-aos-delay="300">
+            <h4 class="name-header fs-6 mb-4">Intelligence & Safety</h4>
+            <div class="skill-group">
+                <span class="skill-tag">ISO 26262</span><span class="skill-tag">AUTOSAR</span><span class="skill-tag">Deep Learning</span>
+                <span class="skill-tag">MLOps (MLflow)</span><span class="skill-tag">CNN</span><span class="skill-tag">Hugging Face</span>
             </div>
         </div>
     </div>
 </section>
 
-<section id="about" class="py-5">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-8" data-aos="fade-up">
-                <div class="bento-item h-100">
-                    <h2 class="section-title mb-4">About Me</h2>
-                    <p class="fs-5 text-secondary">
-                        Currently pursuing a Bachelor's at <strong>Ain Shams University</strong>. Skilled in both hardware description languages and high-level programming. My focus is on <strong>Embedded Systems, Digital Design, Machine Learning, and Cybersecurity</strong>.
-                    </p>
-                    <p class="text-secondary">
-                        I am comfortable working across both software and hardware domains, with a strong foundation in data structures, algorithms, and system-level design. Currently exploring MLOps and Functional Safety in Automotive.
-                    </p>
-                    <div class="mt-4 p-3 rounded" style="background: rgba(255,255,255,0.05); border-left: 4px solid var(--accent);">
-                        <span class="fst-italic">"Building reliable systems from silicon to software."</span>
-                    </div>
+<section id="projects" class="py-5 bg-black">
+    <div class="container py-5">
+        <h2 class="name-header fs-4 mb-5" style="border-left: 5px solid var(--accent); padding-left: 20px;">DEPLOYED_PROJECTS</h2>
+        
+        <div class="project-blade" data-aos="fade-right">
+            <div class="blade-number">01 // GPS_ARM</div>
+            <div class="blade-content">
+                <h3 class="name-header fs-5 mb-3">GPS Tracking System</h3>
+                <p class="text-secondary small">Low-latency coordinate acquisition and processing on ARM Cortex-M architecture.</p>
+                <div class="blade-meta">
+                    <div class="meta-box"><h6>Challenge</h6><p>Real-time GPS loging on embedded device</p></div>
+                    <div class="meta-box"><h6>Solution</h6><p>UART communication on ARM M4</p></div>
+                    <div class="meta-box"><h6>Outcome</h6><p>Reliable motion tracking</p></div>
                 </div>
-            </div>
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-                <div class="bento-item h-100">
-                    <h4 class="mb-4">Quick Links</h4>
-                    <div class="list-group list-group-flush">
-                        <a href="https://github.com/zyadmagdy11" class="bg-transparent text-white list-group-item border-secondary border-opacity-25"><i class="fab fa-github me-2 text-info"></i> 10+ Repositories</a>
-                        <a href="#" class="bg-transparent text-white list-group-item border-secondary border-opacity-25"><i class="fas fa-map-marker-alt me-2 text-info"></i> Cairo, Egypt</a>
-                        <a href="http://www.linkedin.com/in/zyad-magdy-aa3a54302" class="bg-transparent text-white list-group-item border-secondary border-opacity-25"><i class="fab fa-linkedin me-2 text-info"></i> LinkedIn Profile</a>
-                    </div>
+                <div class="mt-4">
+                    <a href="https://github.com/zyadmagdy11/ARM_M4_GPS" class="mono text-info text-decoration-none small">GITHUB_REPO -></a>
                 </div>
             </div>
         </div>
-    </div>
-</section>
 
-<section id="skills" class="py-5">
-    <div class="container">
-        <h2 class="mb-5 fw-bold text-center">Technical <span style="color:var(--accent)">Ecosystem</span></h2>
-        <div class="bento-grid">
-            <div class="bento-item" data-aos="fade-up">
-                <h6 class="text-primary"><i class="fas fa-code me-2"></i>Languages</h6>
-                <div class="skill-wrap">
-                    <span class="skill-pill">C</span><span class="skill-pill">C++</span><span class="skill-pill">Python</span>
-                    <span class="skill-pill">Java</span><span class="skill-pill">SQL</span>
+        <div class="project-blade" data-aos="fade-left">
+            <div class="blade-number">02 // CPU_DESIGN</div>
+            <div class="blade-content">
+                <h3 class="name-header fs-5 mb-3">MIPS Processor Core</h3>
+                <p class="text-secondary small">Full-scale Verilog implementation of a RISC-based processor supporting R/I instructions.</p>
+                <div class="blade-meta">
+                    <div class="meta-box"><h6>Challenge</h6><p>Instruction cycle optimization</p></div>
+                    <div class="meta-box"><h6>Solution</h6><p>RTL coding with Verilog</p></div>
+                    <div class="meta-box"><h6>Outcome</h6><p>Functional cycle-accurate sim</p></div>
                 </div>
-            </div>
-            <div class="bento-item" data-aos="fade-up" data-aos-delay="100">
-                <h6 class="text-primary"><i class="fas fa-microchip me-2"></i>Hardware</h6>
-                <div class="skill-wrap">
-                    <span class="skill-pill">VHDL</span><span class="skill-pill">Verilog</span><span class="skill-pill">SystemVerilog</span>
-                    <span class="skill-pill">FPGA</span><span class="skill-pill">FSM</span><span class="skill-pill">Static Timing</span>
-                    <span class="skill-pill">PCI</span>
-                </div>
-            </div>
-            <div class="bento-item" data-aos="fade-up" data-aos-delay="200">
-                <h6 class="text-primary"><i class="fas fa-network-wired me-2"></i>Embedded</h6>
-                <div class="skill-wrap">
-                    <span class="skill-pill">ARM Cortex-M</span><span class="skill-pill">UART</span><span class="skill-pill">CAN</span>
-                    <span class="skill-pill">Bootloaders</span><span class="skill-pill">RTOS</span><span class="skill-pill">Interrupts</span>
-                </div>
-            </div>
-            <div class="bento-item" data-aos="fade-up" data-aos-delay="300">
-                <h6 class="text-primary"><i class="fas fa-brain me-2"></i>ML & Data</h6>
-                <div class="skill-wrap">
-                    <span class="skill-pill">Scikit-Learn</span><span class="skill-pill">Keras</span><span class="skill-pill">CNN</span>
-                    <span class="skill-pill">NumPy</span><span class="skill-pill">MLOps</span><span class="skill-pill">Hugging Face</span>
+                <div class="mt-4">
+                    <a href="https://github.com/zyadmagdy11/MIPS-Assembly-Project" class="mono text-info text-decoration-none small">GITHUB_REPO -></a>
                 </div>
             </div>
         </div>
-        <div class="text-center mt-4">
-            <span class="skill-pill">Linux</span><span class="skill-pill">Kali Linux</span><span class="skill-pill">Qt</span><span class="skill-pill">ISO 26262</span><span class="skill-pill">AUTOSAR</span><span class="skill-pill">Data Structures</span><span class="skill-pill">Algorithms</span><span class="skill-pill">OOP</span><span class="skill-pill">System Design</span>
-        </div>
-    </div>
-</section>
 
-<section id="projects" class="py-5">
-    <div class="container">
-        <h2 class="mb-5 fw-bold">Featured <span style="color:var(--accent)">Engagements</span></h2>
-        <div class="row g-4">
-            <div class="col-md-6" data-aos="fade-right">
-                <div class="project-card-new">
-                    <i class="fas fa-satellite fa-2x mb-3 text-primary"></i>
-                    <h4>GPS Tracking System</h4>
-                    <div class="project-meta my-3">
-                        <strong>Challenge:</strong> Real-time tracking on embedded hardware.<br>
-                        <strong>Solution:</strong> C on ARM Cortex-M, UART comms.<br>
-                        <strong>Outcome:</strong> Accurate motion-based coordinate logging.
-                    </div>
-                    <p class="small text-secondary">Stack: C · ARM · Embedded</p>
-                    <a href="https://github.com/zyadmagdy11/ARM_M4_GPS" class="btn btn-sm btn-outline-info">Source Code</a>
+        <div class="project-blade" data-aos="fade-right">
+            <div class="blade-number">03 // EDU_SYSTEM</div>
+            <div class="blade-content">
+                <h3 class="name-header fs-5 mb-3">EduFLEXA Platform</h3>
+                <p class="text-secondary small">Virtual educational ecosystem developed for scalable desktop deployment.</p>
+                <div class="blade-meta">
+                    <div class="meta-box"><h6>Challenge</h6><p>JavaFX interface complexity</p></div>
+                    <div class="meta-box"><h6>Solution</h6><p>Modular OOP design in Java</p></div>
+                    <div class="meta-box"><h6>Outcome</h6><p>High-performance UI</p></div>
                 </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-left">
-                <div class="project-card-new">
-                    <i class="fas fa-microchip fa-2x mb-3 text-primary"></i>
-                    <h4>MIPS Processor (Verilog)</h4>
-                    <div class="project-meta my-3">
-                        <strong>Challenge:</strong> Design a MIPS processor core.<br>
-                        <strong>Solution:</strong> Verilog implementation (R/I-type instructions).<br>
-                        <strong>Outcome:</strong> Functional processor simulation.
-                    </div>
-                    <p class="small text-secondary">Stack: Verilog · FPGA · Computer Architecture</p>
-                    <a href="https://github.com/zyadmagdy11/MIPS-Assembly-Project" class="btn btn-sm btn-outline-info">Source Code</a>
-                </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-right">
-                <div class="project-card-new">
-                    <i class="fas fa-laptop-code fa-2x mb-3 text-primary"></i>
-                    <h4>EduFLEXA</h4>
-                    <div class="project-meta my-3">
-                        <strong>Challenge:</strong> Virtual course platform with JavaFX.<br>
-                        <strong>Solution:</strong> Interactive desktop application.<br>
-                        <strong>Outcome:</strong> User-friendly educational tool.
-                    </div>
-                    <p class="small text-secondary">Stack: Java · JavaFX · OOP</p>
-                    <a href="https://github.com/zyadmagdy11/EDUFLEXA_java_edu_system" class="btn btn-sm btn-outline-info">Source Code</a>
-                </div>
-            </div>
-            <div class="col-md-6" data-aos="fade-left">
-                <div class="project-card-new">
-                    <i class="fas fa-project-diagram fa-2x mb-3 text-primary"></i>
-                    <h4>Algorithm Design & Analysis</h4>
-                    <div class="project-meta my-3">
-                        <strong>Challenge:</strong> Solve 6 complex algorithmic problems.<br>
-                        <strong>Solution:</strong> Divide & conquer, greedy, DP with GUI.<br>
-                        <strong>Outcome:</strong> Full technical report & demos.
-                    </div>
-                    <p class="small text-secondary">Stack: C++ · Java · Algorithms</p>
-                    <a href="https://github.com/zyadmagdy11/Algorithm-Project" class="btn btn-sm btn-outline-info">Source Code</a>
+                <div class="mt-4">
+                    <a href="https://github.com/zyadmagdy11/EDUFLEXA_java_edu_system" class="mono text-info text-decoration-none small">GITHUB_REPO -></a>
                 </div>
             </div>
         </div>
@@ -307,70 +266,62 @@
 
 <section id="training" class="py-5">
     <div class="container">
-        <h2 class="mb-5 fw-bold text-center">Training & <span style="color:var(--accent)">Certifications</span></h2>
+        <h4 class="name-header fs-6 mb-5 text-center">Certification_Logs</h4>
         <div class="row g-4">
-            <div class="col-md-6" data-aos="fade-up">
-                <div class="timeline-item">
-                    <h5 class="text-white">Data Scientist (DEPI)</h5>
-                    <p class="small text-info">Digital Egypt Pioneers (IBM) | Dec 2025 – Jul 2026</p>
-                    <ul class="small text-secondary">
-                        <li>120h program: data science lifecycle, SQL, Matplotlib, Seaborn.</li>
-                        <li>Implemented ML models using MLflow & Hugging Face.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h5 class="text-white">Embedded Systems</h5>
-                    <p class="small text-info">Siemens | Jul 2025 – Sep 2025</p>
-                    <ul class="small text-secondary">
-                        <li>100h training: CAN protocol, bootloaders, RTOS.</li>
-                        <li>Functional safety (ISO 26262) & automotive cybersecurity.</li>
-                    </ul>
-                </div>
-                <div class="timeline-item">
-                    <h5 class="text-white">Digital Design (FPGA)</h5>
-                    <p class="small text-info">NTI | Aug 2025 – Sep 2025</p>
-                    <ul class="small text-secondary">
-                        <li>90h course: VHDL, FSMs, memory design, RTL coding.</li>
-                    </ul>
+            <div class="col-md-4" data-aos="zoom-in">
+                <div class="p-4 border border-secondary border-opacity-25 h-100">
+                    <span class="mono text-info small d-block mb-2">IBM / DEPI</span>
+                    <h5 class="name-header fs-6">Data Scientist</h5>
+                    <p class="small text-secondary">MLflow, Hugging Face, MLOps, SQL, and Data Visualization.</p>
                 </div>
             </div>
-            <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
-                <div class="timeline-item">
-                    <h5 class="text-white">Cyber Security</h5>
-                    <p class="small text-info">ITI Port Said | Aug 2024 – Sep 2024</p>
-                    <ul class="small text-secondary">
-                        <li>120h comprehensive security training at ITI.</li>
-                    </ul>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
+                <div class="p-4 border border-secondary border-opacity-25 h-100">
+                    <span class="mono text-info small d-block mb-2">SIEMENS</span>
+                    <h5 class="name-header fs-6">Embedded Systems</h5>
+                    <p class="small text-secondary">ISO 26262, CAN, RTOS, and Automotive Cybersecurity.</p>
                 </div>
-                <div class="timeline-item">
-                    <h5 class="text-white">ML Specialization</h5>
-                    <p class="small text-info">DeepLearning.AI | Aug 2023 – Sep 2023</p>
-                    <ul class="small text-secondary">
-                        <li>Regression, neural networks, decision trees.</li>
-                        <li>Built models in Python with NumPy & scikit-learn.</li>
-                    </ul>
+            </div>
+            <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
+                <div class="p-4 border border-secondary border-opacity-25 h-100">
+                    <span class="mono text-info small d-block mb-2">NTI</span>
+                    <h5 class="name-header fs-6">Digital Design</h5>
+                    <p class="small text-secondary">FPGA Architecture, VHDL, and FSM Optimizations.</p>
+                </div>
+            </div>
+            <div class="col-md-6" data-aos="zoom-in" data-aos-delay="300">
+                <div class="p-4 border border-secondary border-opacity-25 h-100">
+                    <span class="mono text-info small d-block mb-2">ITI PORT SAID</span>
+                    <h5 class="name-header fs-6">Cyber Security</h5>
+                    <p class="small text-secondary">Comprehensive 120h security and penetration testing training.</p>
+                </div>
+            </div>
+            <div class="col-md-6" data-aos="zoom-in" data-aos-delay="400">
+                <div class="p-4 border border-secondary border-opacity-25 h-100">
+                    <span class="mono text-info small d-block mb-2">DEEPLEARNING.AI</span>
+                    <h5 class="name-header fs-6">ML Specialization</h5>
+                    <p class="small text-secondary">Neural Networks, Decision Trees, and Scikit-Learn modeling.</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
-<footer class="py-5 border-top border-secondary border-opacity-25 mt-5">
+<footer class="py-5 border-top border-secondary border-opacity-25">
     <div class="container text-center">
-        <h4 class="fw-bold mb-4">Zyad Magdy Roushdy</h4>
-        <div class="d-flex justify-content-center gap-4 mb-4 fs-4">
+        <p class="mono small text-secondary">CONTACT_INITIATED // <a href="mailto:zyadmagdy32@gmail.com" class="text-white">zyadmagdy32@gmail.com</a></p>
+        <div class="d-flex justify-content-center gap-4 mt-4">
             <a href="https://github.com/zyadmagdy11" class="text-secondary"><i class="fab fa-github"></i></a>
             <a href="http://www.linkedin.com/in/zyad-magdy-aa3a54302" class="text-secondary"><i class="fab fa-linkedin"></i></a>
-            <a href="mailto:zyadmagdy32@gmail.com" class="text-secondary"><i class="fas fa-envelope"></i></a>
         </div>
-        <p class="text-secondary small mb-0">© 2026 Built for Systems Engineering Excellence.</p>
     </div>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script>
-    AOS.init({ duration: 1000, once: true });
+    AOS.init({ duration: 800, once: true });
 </script>
+
 </body>
 </html>
